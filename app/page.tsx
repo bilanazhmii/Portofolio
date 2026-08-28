@@ -2,11 +2,22 @@
 
 import { ArrowDownRight, ArrowUpRight, AtSign, Code2, ExternalLink, Menu, MoveUpRight, X } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from 'react';
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 
 const categories = ['All', 'TypeScript', 'JavaScript'] as const;
 type Category = (typeof categories)[number];
 
 const navItems = [['home', 'Home'], ['work', 'Work'], ['about', 'About'], ['contact', 'Contact']] as const;
+
+const secretClues = [
+  { id: 'note', letter: 'N', title: 'Personal note' },
+  { id: 'arabic', letter: 'A', title: 'Arabic, read in full' },
+  { id: 'before', letter: 'B', title: 'Before success' },
+  { id: 'iteration', letter: 'I', title: 'Iteration' },
+  { id: 'lembang', letter: 'L', title: 'Lembang' },
+  { id: 'aeternum', letter: 'A', title: 'Aeternum' },
+] as const;
+type SecretClueId = (typeof secretClues)[number]['id'];
 
 const quoteSlides = [
   {
@@ -68,6 +79,9 @@ export default function Home() {
   const [identityOpen, setIdentityOpen] = useState(false);
   const [identityVisible, setIdentityVisible] = useState(false);
   const [quoteIndex, setQuoteIndex] = useState(0);
+  const [foundClues, setFoundClues] = useState<SecretClueId[]>([]);
+  const [clueToast, setClueToast] = useState<SecretClueId | null>(null);
+  const [secretOpen, setSecretOpen] = useState(false);
   const mainRef = useRef<HTMLElement>(null);
   const progressRef = useRef<HTMLSpanElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -78,8 +92,32 @@ export default function Home() {
   const lastProjectTriggerRef = useRef<HTMLButtonElement>(null);
   const closeTimerRef = useRef<number>(0);
   const identityTimerRef = useRef<number>(0);
+  const clueToastTimerRef = useRef<number>(0);
+  const secretRevealTimerRef = useRef<number>(0);
+  const typedSecretRef = useRef('');
 
   const visibleProjects = useMemo(() => projects.filter((project) => category === 'All' || project.category === category), [category]);
+  const completedSecret = foundClues.length === secretClues.length;
+
+  const discoverClue = useCallback((id: SecretClueId) => {
+    if (foundClues.includes(id)) return;
+    const next = [...foundClues, id];
+    setFoundClues(next);
+    window.localStorage.setItem('bilanium-secret-clues', JSON.stringify(next));
+    setClueToast(id);
+    window.clearTimeout(clueToastTimerRef.current);
+    clueToastTimerRef.current = window.setTimeout(() => setClueToast(null), 2600);
+
+    if (next.length === secretClues.length) {
+      window.clearTimeout(secretRevealTimerRef.current);
+      secretRevealTimerRef.current = window.setTimeout(() => {
+        setIdentityVisible(false);
+        setIdentityOpen(false);
+        setSelectedProject(null);
+        setSecretOpen(true);
+      }, 950);
+    }
+  }, [foundClues]);
 
   const closeProject = useCallback(() => {
     if (!selectedProject) return;
@@ -98,6 +136,7 @@ export default function Home() {
   };
 
   const openIdentity = () => {
+    discoverClue('note');
     setQuoteIndex(0);
     setIdentityOpen(true);
   };
@@ -113,7 +152,27 @@ export default function Home() {
     }, delay);
   }, [identityOpen]);
 
-  const showNextQuote = () => setQuoteIndex((current) => (current + 1) % quoteSlides.length);
+  const showNextQuote = () => setQuoteIndex((current) => {
+    const next = (current + 1) % quoteSlides.length;
+    if (next === 0) discoverClue('arabic');
+    return next;
+  });
+
+  const revealSecret = useCallback(() => {
+    const allClues = secretClues.map((clue) => clue.id);
+    setFoundClues(allClues);
+    window.localStorage.setItem('bilanium-secret-clues', JSON.stringify(allClues));
+    setIdentityOpen(false);
+    setSelectedProject(null);
+    setSecretOpen(true);
+  }, []);
+
+  const resetSecret = () => {
+    setSecretOpen(false);
+    setFoundClues([]);
+    setClueToast(null);
+    window.localStorage.removeItem('bilanium-secret-clues');
+  };
 
   const showClickPulse = (event: ReactPointerEvent<HTMLElement>) => {
     const target = (event.target as HTMLElement).closest('a, button');
@@ -125,6 +184,19 @@ export default function Home() {
     void pulse.offsetWidth;
     pulse.classList.add('is-clicked');
   };
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      try {
+        const stored = JSON.parse(window.localStorage.getItem('bilanium-secret-clues') ?? '[]') as string[];
+        const valid = stored.filter((id): id is SecretClueId => secretClues.some((clue) => clue.id === id));
+        setFoundClues([...new Set(valid)]);
+      } catch {
+        window.localStorage.removeItem('bilanium-secret-clues');
+      }
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const root = mainRef.current;
@@ -199,14 +271,23 @@ export default function Home() {
 
   useEffect(() => {
     const closeMenu = (event: KeyboardEvent) => {
-      if (event.key !== 'Escape') return;
-      if (identityOpen) closeIdentity();
-      else if (selectedProject) closeProject();
-      else setMenuOpen(false);
+      if (event.key === 'Escape') {
+        if (secretOpen) return;
+        if (identityOpen) closeIdentity();
+        else if (selectedProject) closeProject();
+        else setMenuOpen(false);
+        return;
+      }
+
+      const target = event.target as HTMLElement | null;
+      if (target?.matches('input, textarea, select, [contenteditable="true"]') || event.ctrlKey || event.metaKey || event.altKey) return;
+      if (event.key.length !== 1) return;
+      typedSecretRef.current = `${typedSecretRef.current}${event.key.toUpperCase()}`.slice(-6);
+      if (typedSecretRef.current === 'NABILA') revealSecret();
     };
     window.addEventListener('keydown', closeMenu);
     return () => window.removeEventListener('keydown', closeMenu);
-  }, [closeIdentity, closeProject, identityOpen, selectedProject]);
+  }, [closeIdentity, closeProject, identityOpen, revealSecret, secretOpen, selectedProject]);
 
   useEffect(() => {
     if (!selectedProject) return;
@@ -239,6 +320,8 @@ export default function Home() {
   useEffect(() => () => {
     window.clearTimeout(closeTimerRef.current);
     window.clearTimeout(identityTimerRef.current);
+    window.clearTimeout(clueToastTimerRef.current);
+    window.clearTimeout(secretRevealTimerRef.current);
   }, []);
 
   return (
@@ -247,6 +330,18 @@ export default function Home() {
       <div className="scroll-progress" aria-hidden="true"><span ref={progressRef} /></div>
       <div className="cursor-orbit" ref={cursorRef} aria-hidden="true" />
       <span className="click-pulse" ref={clickPulseRef} aria-hidden="true" />
+      {foundClues.length > 0 && (
+        <aside className={`secret-progress ${completedSecret ? 'is-complete' : ''}`} aria-label={`${foundClues.length} of ${secretClues.length} hidden letters found`}>
+          <span>Quiet coordinates</span>
+          <div aria-hidden="true">
+            {secretClues.map((clue) => <i className={foundClues.includes(clue.id) ? 'is-found' : ''} key={clue.id}>{foundClues.includes(clue.id) ? clue.letter : '·'}</i>)}
+          </div>
+          {completedSecret ? <button type="button" onClick={() => setSecretOpen(true)}>Open the archive ↗</button> : <small>{foundClues.length}/6 · keep looking</small>}
+        </aside>
+      )}
+      <output className={`clue-toast ${clueToast ? 'is-visible' : ''}`} aria-live="polite">
+        {clueToast && <><span>Clue found</span><strong>{secretClues.find((clue) => clue.id === clueToast)?.letter} / {secretClues.find((clue) => clue.id === clueToast)?.title}</strong></>}
+      </output>
 
       <header className="site-header">
         <a className="brand" href="#home" aria-label="BilaNiumN1 home" data-cursor="Home"><span>B</span><strong>BILANIUMN1</strong></a>
@@ -266,12 +361,12 @@ export default function Home() {
           <div className="card-stage hero-enter hero-enter-2">
             <div className="identity-card" data-cursor="Open note" onPointerMove={(event) => setTilt(event, 9)} onPointerLeave={resetTilt}>
               <div className="lanyard" />
-              <div className="identity-top"><span>BILANIUM / 26</span><span>GITHUB ID</span></div>
+              <div className="identity-top"><span>IRGA / 26</span><span>GITHUB ID</span></div>
               <div className="identity-mark">
                 {/* oxlint-disable-next-line next/no-img-element -- public GitHub avatar is the verified profile source */}
                 <img className="identity-photo" src="https://avatars.githubusercontent.com/u/282802931?v=4" alt="BilaNiumN1 GitHub avatar" />
               </div>
-              <div className="identity-bottom"><strong>Independent developer</strong><span>Practical products<br />for real workflows</span></div>
+              <div className="identity-bottom"><strong>Irga Andreansyah<br />Setiawan</strong><span>Practical products<br />for real workflows</span></div>
               <button ref={identityTriggerRef} className="identity-hit" type="button" aria-haspopup="dialog" aria-label="Open personal quote and translations" onClick={openIdentity}>
                 <span>Personal note</span><strong>Aṣ-ṣabru qabla an-najāḥ ↗</strong>
               </button>
@@ -280,7 +375,7 @@ export default function Home() {
             <span className="card-note">MOVE · CLICK · READ ↗</span>
           </div>
           <div className="hero-copy">
-            <p className="hero-enter hero-enter-2">Hello, I&apos;m <strong>BilaNiumN1.</strong></p>
+            <p className="hero-enter hero-enter-2">Hello, I&apos;m <strong>Irga.</strong> <span className="hero-handle">/ @BilaNiumN1</span></p>
             <h1 aria-label="Independent developer building useful digital products">
               <span className="title-line hero-enter hero-enter-3"><span>Independent developer</span></span>
               <span className="title-line hero-enter hero-enter-4"><span>building useful products.</span></span>
@@ -296,7 +391,7 @@ export default function Home() {
 
       <div className="profile-facts shell" aria-label="Public GitHub profile facts">
         <div><strong>06</strong><span>Public repositories</span></div>
-        <div><strong>Lembang</strong><span>Based in Indonesia</span></div>
+        <button className="fact-clue" type="button" onClick={() => discoverClue('lembang')} aria-label="Inspect Lembang profile fact"><strong>Lembang</strong><span>Based in Indonesia</span><i aria-hidden="true">L</i></button>
         <div><strong>May ’26</strong><span>GitHub profile created</span></div>
       </div>
 
@@ -330,6 +425,7 @@ export default function Home() {
               </div>
               <div className="project-info"><div><h3>{project.title}</h3><p>{project.caption}</p></div><div><span>{project.category}</span><span>{project.updated}</span><span className="project-open">Repository details ↗</span></div></div>
               <button className="project-hit" type="button" aria-haspopup="dialog" aria-label={`Open ${project.title} project preview`} onClick={(event) => openProject(project, event)} />
+              {project.number === '03' && <button className="clue-trigger clue-project" type="button" aria-label="Inspect the before-success marker" onClick={() => discoverClue('before')}><span aria-hidden="true">B</span><small>before success</small></button>}
             </article>
           ))}
         </div>
@@ -346,7 +442,7 @@ export default function Home() {
             ['02', 'System thinking', 'Connect interface, API, data, security, and deployment as one coherent product.'],
             ['03', 'Iterative craft', 'Ship, observe, refine, and keep the implementation as intentional as the design.'],
           ].map(([number, title, detail], index) => (
-            <div className="capability" key={number} data-reveal style={{ '--reveal-delay': `${index * 70}ms` } as CSSProperties}><span>{number}</span><h3>{title}</h3><p>{detail}</p><MoveUpRight aria-hidden="true" /></div>
+            <div className="capability" key={number} data-reveal style={{ '--reveal-delay': `${index * 70}ms` } as CSSProperties}><span>{number}</span><h3>{title}</h3><p>{detail}</p>{index === 2 ? <button className="clue-trigger clue-iteration" type="button" aria-label="Inspect the iteration marker" onClick={() => discoverClue('iteration')}><span aria-hidden="true">I</span></button> : <MoveUpRight aria-hidden="true" />}</div>
           ))}
         </div>
       </section>
@@ -361,8 +457,9 @@ export default function Home() {
             <a href="https://www.instagram.com/tell.hack/" target="_blank" rel="noreferrer" data-cursor="Instagram"><AtSign /> @tell.hack</a>
             <a href="https://orcid.org/0009-0004-5857-3394" target="_blank" rel="noreferrer" data-cursor="ORCID"><ExternalLink /> ORCID</a>
           </div>
+          <button className="aeternum-trigger" type="button" aria-label="Inspect the meaning of Aeternum" onClick={() => discoverClue('aeternum')}><span>AETERNUM</span><i>what is meant to remain</i><strong>A</strong></button>
         </div>
-        <footer><span>BILANIUMN1 — DEVELOPER PORTFOLIO</span><span>LEMBANG / 2026</span><a href="#home">BACK TO TOP ↑</a></footer>
+        <footer><span>IRGA ANDREANSYAH SETIAWAN — DEVELOPER PORTFOLIO</span><span>SOMNIUM / 2026</span><a href="#home">BACK TO TOP ↑</a></footer>
       </section>
 
       {selectedProject && (
@@ -400,8 +497,8 @@ export default function Home() {
             <aside className="quote-sidebar" aria-label="Quote context">
               <span>PERSONAL NOTE / 01</span>
               <div>
-                <p>Three languages.<br />One quiet reminder.</p>
-                <small>Click the words to roll through every translation.</small>
+                <p>One note.<br />More than one meaning.</p>
+                <small>Read every language. The beginning returns only after the full circle.</small>
               </div>
               <ol aria-label="Available languages">
                 {quoteSlides.map((slide, index) => <li className={index === quoteIndex ? 'is-active' : ''} key={slide.id}><span>0{index + 1}</span>{slide.label}</li>)}
@@ -423,6 +520,41 @@ export default function Home() {
           </dialog>
         </div>
       )}
+
+      <Dialog open={secretOpen} onOpenChange={setSecretOpen}>
+        <DialogContent showCloseButton={false} className="secret-dialog">
+          <DialogTitle className="secret-title">The Favorite Lady</DialogTitle>
+          <DialogDescription className="sr-only">A private archive unlocked by discovering the six letters of Nabila.</DialogDescription>
+          <button className="secret-close" type="button" aria-label="Close The Favorite Lady archive" onClick={() => setSecretOpen(false)}><X /></button>
+          <div className="secret-topline"><span>PRIVATE ARCHIVE / 06 OF 06</span><strong>N · A · B · I · L · A</strong></div>
+          <div className="secret-intro">
+            <span className="secret-monogram" aria-hidden="true">N</span>
+            <div>
+              <p>For the person hidden between the details.</p>
+              <h2>Nabila Nazhmi<br />Dhi&apos;ulHaq</h2>
+              <a href="https://www.instagram.com/bilaniumn1/" target="_blank" rel="noreferrer"><AtSign /> BilaNiumN1</a>
+            </div>
+          </div>
+          <p className="secret-thesis">Some people are not merely part of the story. They are the quiet reason it keeps being written.</p>
+          <div className="secret-lexicon">
+            <article>
+              <span>01 / SOMNIUM</span>
+              <strong>Dream</strong>
+              <p>A name she gave to the place where an idea first learns how to exist.</p>
+            </article>
+            <article>
+              <span>02 / AETERNUM</span>
+              <strong>Forever</strong>
+              <p>A name for the meaning that remains after a moment has passed.</p>
+            </article>
+          </div>
+          <div className="secret-signature">
+            <div><span>ARCHIVED BY</span><strong>Irga Andreansyah Setiawan</strong><a href="https://www.instagram.com/somniumn1/" target="_blank" rel="noreferrer"><AtSign /> SomNiumN1</a></div>
+            <blockquote><span>الصبر قبل النجاح</span><p>Aṣ-ṣabru qabla an-najāḥ.</p><cite>— from her: “Astaṭīʿu an aṣbir 😊”</cite></blockquote>
+          </div>
+          <div className="secret-footer"><span>SOMNIUM → AETERNUM</span><button type="button" onClick={resetSecret}>Hide every clue again</button></div>
+        </DialogContent>
+      </Dialog>
     </main>
   );
 }
