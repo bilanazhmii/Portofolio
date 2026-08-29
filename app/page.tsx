@@ -433,7 +433,7 @@ export default function Home() {
 
       <section className="about shell" id="about">
         <div className="section-heading about-heading" data-reveal>
-          <div><span className="section-index">02 / HOW I BUILD</span><h2>Clarity first.<br />Systems that last.</h2></div>
+          <div><span className="section-index">02 / HOW I BUILD</span><h2><span>Clarity first.</span><span>Systems that last.</span></h2></div>
           <p>I care about the details between an idea and a product people can actually use: thoughtful UX, sensible architecture, resilient data flows, and continuous refinement.</p>
         </div>
         <div className="capabilities">
@@ -449,15 +449,20 @@ export default function Home() {
 
       <section className="contact shell" id="contact">
         <div className="contact-aura" aria-hidden="true" />
-        <div data-reveal>
-          <span className="section-index">03 / CONNECT</span><p>If you are building something useful, have an interesting technical problem, or want to exchange ideas, feel free to reach out.</p>
-          <h2>Designed with intention.<br />Built through <em>iteration.</em></h2>
-          <div className="contact-actions">
-            <a href="https://github.com/bilanazhmii" target="_blank" rel="noreferrer" data-cursor="GitHub"><Code2 /> @bilanazhmii</a>
-            <a href="https://www.instagram.com/tell.hack/" target="_blank" rel="noreferrer" data-cursor="Instagram"><AtSign /> @Tell.hack</a>
-            <a href="https://orcid.org/0009-0004-5857-3394" target="_blank" rel="noreferrer" data-cursor="ORCID"><ExternalLink /> ORCID</a>
+        <div className="contact-layout" data-reveal>
+          <div className="contact-heading">
+            <span className="section-index">03 / CONNECT</span>
+            <h2><span>Designed with</span><span>intention.</span><span>Built through <em>iteration.</em></span></h2>
           </div>
-          <button className="aeternum-trigger" type="button" aria-label="Inspect the meaning of Aeternum" onClick={() => discoverClue('aeternum')}><span>AETERNUM</span><i>what is meant to remain</i><strong>A</strong></button>
+          <div className="contact-body">
+            <p>If you are building something useful, have an interesting technical problem, or want to exchange ideas, feel free to reach out.</p>
+            <div className="contact-actions">
+              <a href="https://github.com/bilanazhmii" target="_blank" rel="noreferrer" data-cursor="GitHub"><Code2 /><span><small>GitHub</small>@bilanazhmii</span></a>
+              <a href="https://www.instagram.com/tell.hack/" target="_blank" rel="noreferrer" data-cursor="Instagram"><AtSign /><span><small>Instagram</small>@Tell.hack</span></a>
+              <a href="https://orcid.org/0009-0004-5857-3394" target="_blank" rel="noreferrer" data-cursor="ORCID"><ExternalLink /><span><small>Research identity</small>ORCID</span></a>
+            </div>
+            <button className="aeternum-trigger" type="button" aria-label="Inspect the meaning of Aeternum" onClick={() => discoverClue('aeternum')}><span>AETERNUM</span><i>what is meant to remain</i><strong>A</strong></button>
+          </div>
         </div>
         <footer><span>IRGA ANDREANSYAH SETIAWAN — DEVELOPER PORTFOLIO</span><span>SOMNIUM / 2026</span><a href="#home">BACK TO TOP ↑</a></footer>
       </section>
