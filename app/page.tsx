@@ -1,8 +1,40 @@
 'use client';
 
-import { ArrowDownRight, ArrowUpRight, AtSign, Bike, Code2, Cpu, ExternalLink, Gamepad2, GraduationCap, Mail, Menu, MoveUpRight, Server, Users, X } from 'lucide-react';
-import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from 'react';
-import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
+import {
+  type CSSProperties,
+  type MouseEvent as ReactMouseEvent,
+  type PointerEvent as ReactPointerEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+
+import {
+  ArrowDownRight,
+  ArrowUpRight,
+  AtSign,
+  Bike,
+  Code2,
+  Cpu,
+  ExternalLink,
+  Gamepad2,
+  GraduationCap,
+  Mail,
+  Menu,
+  MoveUpRight,
+  Server,
+  Users,
+  X,
+} from 'lucide-react';
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+} from '@/components/ui/dialog';
 
 const categories = ['All', 'TypeScript', 'JavaScript'] as const;
 type Category = (typeof categories)[number];
@@ -480,7 +512,7 @@ export default function Home() {
         </div>
         <div className="offscreen-note" data-reveal>
           <div><Gamepad2 aria-hidden="true" /><span>OFF SCREEN / 01</span><p>CS2, Minecraft, and the curiosity to understand what keeps a world running.</p></div>
-          <div><Bike aria-hidden="true" /><span>OFF SCREEN / 02</span><p>Riding an R25 V3 today—with ZX and H2R living on the long-term dream list.</p></div>
+          <div><Bike aria-hidden="true" /><span>OFF SCREEN / 02</span><p>Riding an R15 V3 today—with ZX and H2R living on the long-term dream list.</p></div>
         </div>
         <p className="responsible-note" data-reveal>Security curiosity is now directed toward defensive testing, system hardening, and responsible experiments inside controlled environments.</p>
       </section>
