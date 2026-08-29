@@ -454,7 +454,7 @@ export default function Home() {
           <h2>Designed with intention.<br />Built through <em>iteration.</em></h2>
           <div className="contact-actions">
             <a href="https://github.com/bilanazhmii" target="_blank" rel="noreferrer" data-cursor="GitHub"><Code2 /> @bilanazhmii</a>
-            <a href="https://www.instagram.com/somniumn1/" target="_blank" rel="noreferrer" data-cursor="Instagram"><AtSign /> @SomNiumN1</a>
+            <a href="https://www.instagram.com/tell.hack/" target="_blank" rel="noreferrer" data-cursor="Instagram"><AtSign /> @Tell.hack</a>
             <a href="https://orcid.org/0009-0004-5857-3394" target="_blank" rel="noreferrer" data-cursor="ORCID"><ExternalLink /> ORCID</a>
           </div>
           <button className="aeternum-trigger" type="button" aria-label="Inspect the meaning of Aeternum" onClick={() => discoverClue('aeternum')}><span>AETERNUM</span><i>what is meant to remain</i><strong>A</strong></button>
@@ -532,7 +532,7 @@ export default function Home() {
             <div>
               <p>For the person hidden between the details.</p>
               <h2>Nabila Nazhmi<br />Dhi&apos;ulHaq</h2>
-              <a href="https://www.instagram.com/bilaniumn1/" target="_blank" rel="noreferrer"><AtSign /> BilaNiumN1</a>
+              <a href="https://www.instagram.com/bilanazhmii/" target="_blank" rel="noreferrer"><AtSign /> @bilanazhmii</a>
             </div>
           </div>
           <p className="secret-thesis">Some people are not merely part of the story. They are the quiet reason it keeps being written.</p>
@@ -549,7 +549,7 @@ export default function Home() {
             </article>
           </div>
           <div className="secret-signature">
-            <div><span>ARCHIVED BY</span><strong>Irga Andreansyah Setiawan</strong><a href="https://www.instagram.com/somniumn1/" target="_blank" rel="noreferrer"><AtSign /> SomNiumN1</a></div>
+            <div><span>ARCHIVED BY</span><strong>Irga Andreansyah Setiawan</strong><a href="https://www.instagram.com/tell.hack/" target="_blank" rel="noreferrer"><AtSign /> @Tell.hack</a></div>
             <blockquote><span>الصبر قبل النجاح</span><p>Aṣ-ṣabru qabla an-najāḥ.</p><cite>— from her: “Astaṭīʿu an aṣbir 😊”</cite></blockquote>
           </div>
           <div className="secret-footer"><span>SOMNIUM → AETERNUM</span><button type="button" onClick={resetSecret}>Hide every clue again</button></div>
