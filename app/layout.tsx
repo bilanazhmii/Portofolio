@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: 'Irga Andreansyah Setiawan — BilaNiumN1',
-  description: 'Irga Andreansyah Setiawan is an independent developer in Lembang, Indonesia, building practical products for real workflows.',
+  description: 'Irga Andreansyah Setiawan is a student developer and systems builder in Lembang, Indonesia, creating useful web products, infrastructure, and community technology.',
 };
 
 export default function RootLayout({

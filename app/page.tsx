@@ -1,13 +1,13 @@
 'use client';
 
-import { ArrowDownRight, ArrowUpRight, AtSign, Code2, ExternalLink, Menu, MoveUpRight, X } from 'lucide-react';
+import { ArrowDownRight, ArrowUpRight, AtSign, Bike, Code2, Cpu, ExternalLink, Gamepad2, GraduationCap, Mail, Menu, MoveUpRight, Server, Users, X } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 
 const categories = ['All', 'TypeScript', 'JavaScript'] as const;
 type Category = (typeof categories)[number];
 
-const navItems = [['home', 'Home'], ['work', 'Work'], ['about', 'About'], ['contact', 'Contact']] as const;
+const navItems = [['home', 'Home'], ['work', 'Work'], ['about', 'Process'], ['profile', 'Profile'], ['contact', 'Contact']] as const;
 
 const secretClues = [
   { id: 'note', letter: 'N', title: 'Personal note' },
@@ -361,12 +361,12 @@ export default function Home() {
           <div className="card-stage hero-enter hero-enter-2">
             <div className="identity-card" data-cursor="Open note" onPointerMove={(event) => setTilt(event, 9)} onPointerLeave={resetTilt}>
               <div className="lanyard" />
-              <div className="identity-top"><span>IRGA / 26</span><span>GITHUB ID</span></div>
+              <div className="identity-top"><span>IRGA / 17</span><span>STUDENT ID</span></div>
               <div className="identity-mark">
                 {/* oxlint-disable-next-line next/no-img-element -- public GitHub avatar is the verified profile source */}
                 <img className="identity-photo" src="https://avatars.githubusercontent.com/u/282802931?v=4" alt="BilaNiumN1 GitHub avatar" />
               </div>
-              <div className="identity-bottom"><strong>Irga Andreansyah<br />Setiawan</strong><span>Practical products<br />for real workflows</span></div>
+              <div className="identity-bottom"><strong>Irga Andreansyah<br />Setiawan</strong><span>Systems · products<br />community tech</span></div>
               <button ref={identityTriggerRef} className="identity-hit" type="button" aria-haspopup="dialog" aria-label="Open personal quote and translations" onClick={openIdentity}>
                 <span>Personal note</span><strong>Aṣ-ṣabru qabla an-najāḥ ↗</strong>
               </button>
@@ -375,30 +375,30 @@ export default function Home() {
             <span className="card-note">MOVE · CLICK · READ ↗</span>
           </div>
           <div className="hero-copy">
-            <p className="hero-enter hero-enter-2">Independent product developer <span className="hero-handle">/ Lembang, ID</span></p>
+            <p className="hero-enter hero-enter-2">Student developer &amp; systems builder <span className="hero-handle">/ Lembang, ID</span></p>
             <h1 aria-label="Useful digital products, thoughtfully built">
               <span className="title-line hero-enter hero-enter-3"><span>Useful products,</span></span>
               <span className="title-line title-line-accent hero-enter hero-enter-4"><span>thoughtfully built.</span></span>
             </h1>
             <div className="hero-detail hero-enter hero-enter-5">
-              <p>Hello, I&apos;m <strong>Irga Andreansyah Setiawan.</strong> I turn everyday problems into clear interfaces, reliable systems, and maintainable code.</p>
+              <p>Hello, I&apos;m <strong>Irga Andreansyah Setiawan.</strong> A 17-year-old informatics student turning everyday problems into useful products, reliable systems, and practical infrastructure.</p>
               <a className="primary-button" href="#work" data-cursor="Explore" onPointerMove={(event) => setTilt(event, 3)} onPointerLeave={resetTilt}><span>Explore selected work</span><ArrowDownRight /></a>
             </div>
           </div>
         </div>
-        <div className="hero-foot hero-enter hero-enter-5"><span>Product engineering</span><span>Frontend systems</span><span>Backend APIs</span><span>© 2026</span></div>
+        <div className="hero-foot hero-enter hero-enter-5"><span>Web products</span><span>Linux systems</span><span>Community technology</span><span>© 2026</span></div>
       </section>
 
-      <div className="profile-facts shell" aria-label="Public GitHub profile facts">
-        <div><strong>06</strong><span>Public repositories</span></div>
-        <button className="fact-clue" type="button" onClick={() => discoverClue('lembang')} aria-label="Inspect Lembang profile fact"><strong>Lembang</strong><span>Based in Indonesia</span><i aria-hidden="true">L</i></button>
-        <div><strong>May ’26</strong><span>GitHub profile created</span></div>
+      <div className="profile-facts shell" aria-label="Personal profile facts">
+        <div><strong>17</strong><span>Informatics student</span></div>
+        <button className="fact-clue" type="button" onClick={() => discoverClue('lembang')} aria-label="Inspect Lembang profile fact"><strong>OSIS 06</strong><span>Communication &amp; information</span><i aria-hidden="true">L</i></button>
+        <div><strong>Kali / W11</strong><span>Dual-boot systems builder</span></div>
       </div>
 
       <div className="motion-rail shell" aria-label="Creative services">
         <div className="motion-track">
           {[0, 1].map((copy) => (
-            <div className="motion-copy" aria-hidden={copy === 1} key={copy}><span>Product engineering</span><i>✦</i><span>Frontend systems</span><i>✦</i><span>Backend APIs</span><i>✦</i><span>Data workflows</span><i>✦</i><span>Deployment</span><i>✦</i></div>
+            <div className="motion-copy" aria-hidden={copy === 1} key={copy}><span>Web products</span><i>✦</i><span>Linux systems</span><i>✦</i><span>Infrastructure</span><i>✦</i><span>Community technology</span><i>✦</i><span>Responsible security</span><i>✦</i></div>
           ))}
         </div>
       </div>
@@ -447,16 +447,55 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="journey shell" id="profile">
+        <div className="section-heading journey-heading" data-reveal>
+          <div><span className="section-index">03 / FIELD NOTES</span><h2><span>Still learning.</span><em>Already building.</em></h2></div>
+          <p>School, community work, Linux, servers, and curiosity all meet in the same practice: understand the system, solve the real problem, then share what works.</p>
+        </div>
+        <div className="journey-list">
+          <article className="journey-row" data-reveal>
+            <span className="journey-number">01</span>
+            <div className="journey-title"><Users aria-hidden="true" /><small>Now / Community</small><h3>SMK Informatika × OSIS Kominfo</h3></div>
+            <p>A 17-year-old vocational informatics student serving in OSIS Communication &amp; Information, Sekbid 6—turning school activity into useful digital communication.</p>
+            <a href="https://osissmktest.biezz.my.id" target="_blank" rel="noreferrer">Visit the OSIS website <ArrowUpRight /></a>
+          </article>
+          <article className="journey-row" data-reveal style={{ '--reveal-delay': '70ms' } as CSSProperties}>
+            <span className="journey-number">02</span>
+            <div className="journey-title"><Cpu aria-hidden="true" /><small>Systems / Linux</small><h3>Debugging below the interface</h3></div>
+            <p>Runs Windows 11 and Kali Linux 2026.3 in dual boot on a Lenovo LOQ, works with KDE Plasma and Wayland, and resolved a nouveau/NVIDIA conflict on an RTX 4050 system.</p>
+            <div className="journey-tags" aria-label="System environment"><span>Kali Linux</span><span>KDE</span><span>Wayland</span><span>NVIDIA</span></div>
+          </article>
+          <article className="journey-row" data-reveal style={{ '--reveal-delay': '140ms' } as CSSProperties}>
+            <span className="journey-number">03</span>
+            <div className="journey-title"><Server aria-hidden="true" /><small>Infrastructure / Practice</small><h3>Servers learned by running them</h3></div>
+            <p>Built game-server panels, hosted Minecraft servers, and exposed services through a public IP—learning networking, Linux administration, deployment, and reliability by doing.</p>
+            <div className="journey-tags" aria-label="Infrastructure interests"><span>Self-hosting</span><span>Networking</span><span>Game servers</span></div>
+          </article>
+          <article className="journey-row" data-reveal style={{ '--reveal-delay': '210ms' } as CSSProperties}>
+            <span className="journey-number">04</span>
+            <div className="journey-title"><GraduationCap aria-hidden="true" /><small>Foundation / Education</small><h3>Discipline before acceleration</h3></div>
+            <p>An alumnus of Pesantren Nurul Ilmi Garut, with earlier roots at SDIT Firdaus Lembang–Andir. That foundation continues to shape a patient, responsible way of learning technology.</p>
+            <a href="https://nurulilmi.org/" target="_blank" rel="noreferrer">Pesantren Nurul Ilmi <ArrowUpRight /></a>
+          </article>
+        </div>
+        <div className="offscreen-note" data-reveal>
+          <div><Gamepad2 aria-hidden="true" /><span>OFF SCREEN / 01</span><p>CS2, Minecraft, and the curiosity to understand what keeps a world running.</p></div>
+          <div><Bike aria-hidden="true" /><span>OFF SCREEN / 02</span><p>Riding an R25 V3 today—with ZX and H2R living on the long-term dream list.</p></div>
+        </div>
+        <p className="responsible-note" data-reveal>Security curiosity is now directed toward defensive testing, system hardening, and responsible experiments inside controlled environments.</p>
+      </section>
+
       <section className="contact shell" id="contact">
         <div className="contact-aura" aria-hidden="true" />
         <div className="contact-layout" data-reveal>
           <div className="contact-heading">
-            <span className="section-index">03 / CONNECT</span>
+            <span className="section-index">04 / CONNECT</span>
             <h2><span>Designed with</span><span>intention.</span><span>Built through <em>iteration.</em></span></h2>
           </div>
           <div className="contact-body">
             <p>If you are building something useful, have an interesting technical problem, or want to exchange ideas, feel free to reach out.</p>
             <div className="contact-actions">
+              <a href="mailto:bilaniumn1@gmail.com" data-cursor="Email"><Mail /><span><small>Email</small>bilaniumn1@gmail.com</span></a>
               <a href="https://github.com/bilanazhmii" target="_blank" rel="noreferrer" data-cursor="GitHub"><Code2 /><span><small>GitHub</small>@bilanazhmii</span></a>
               <a href="https://www.instagram.com/tell.hack/" target="_blank" rel="noreferrer" data-cursor="Instagram"><AtSign /><span><small>Instagram</small>@Tell.hack</span></a>
               <a href="https://orcid.org/0009-0004-5857-3394" target="_blank" rel="noreferrer" data-cursor="ORCID"><ExternalLink /><span><small>Research identity</small>ORCID</span></a>
