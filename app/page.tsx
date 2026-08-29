@@ -405,7 +405,7 @@ export default function Home() {
 
       <section className="work shell" id="work">
         <div className="section-heading" data-reveal>
-          <div><span className="section-index">01 / SELECTED WORK</span><h2>Built for<br />real use.</h2></div>
+          <div><span className="section-index">01 / SELECTED WORK</span><h2><span>Built for</span><em>real use.</em></h2></div>
           <p>A focused selection of public projects—each shaped around an actual workflow, a clear purpose, and a maintainable technical foundation.</p>
         </div>
         <div className="work-toolbar" data-reveal>
