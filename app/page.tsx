@@ -392,7 +392,7 @@ export default function Home() {
         <div className="hero-aura" aria-hidden="true" />
         <div className="eyebrow hero-enter hero-enter-1">
           <span>Student developer / systems builder</span>
-          <button className="location-clue" type="button" onClick={() => discoverClue('lembang')} aria-label="Inspect the Lembang location marker"><span>Lembang / Indonesia</span><i aria-hidden="true">L</i></button>
+          <button className="location-clue" type="button" onClick={() => discoverClue('lembang')} aria-label="Inspect the Lembang location marker"><span>Lembang <b>/ Indonesia</b></span><i aria-hidden="true">L</i></button>
         </div>
         <div className="hero-grid">
           <div className="card-stage hero-enter hero-enter-2">

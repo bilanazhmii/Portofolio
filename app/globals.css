@@ -136,6 +136,7 @@ main::before {
 .hero-aura { position: absolute; width: 70%; aspect-ratio: 1; right: -36%; top: -60%; border-radius: 50%; border: 1px solid rgba(255,255,255,.1); box-shadow: 0 0 0 90px rgba(255,255,255,.018), 0 0 0 180px rgba(255,255,255,.012); animation: aura-breathe 7s ease-in-out infinite; }
 .eyebrow, .hero-foot { position: relative; z-index: 2; display: flex; justify-content: space-between; text-transform: uppercase; letter-spacing: .13em; font-size: 10px; color: #a7a8a6; }
 .location-clue { display: inline-flex; align-items: center; gap: 9px; padding: 0; border: 0; background: transparent; color: inherit; font: inherit; letter-spacing: inherit; text-transform: inherit; cursor: pointer; }
+.location-clue b { font: inherit; }
 .location-clue i { width: 18px; aspect-ratio: 1; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.18); border-radius: 50%; color: #6f716e; font: 700 7px var(--font-geist-mono); font-style: normal; transition: color .25s ease, border-color .25s ease, transform .45s var(--ease-spring), background .25s ease; }
 .location-clue:hover i, .location-clue:focus-visible i { border-color: var(--accent); background: rgba(255,107,61,.1); color: var(--accent); transform: rotate(180deg); }
 .location-clue:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: 4px; }
@@ -555,7 +556,7 @@ body:has(.secret-dialog) [data-slot='dialog-overlay'] { z-index: 130; background
   .brand > span { width: 34px; }
   .hero, .work, .about, .journey, .contact { padding: 22px 18px; border-radius: 22px; }
   .hero { min-height: auto; }
-  .eyebrow .location-clue { display: none; }
+  .location-clue b { display: none; }
   .hero-grid { min-height: auto; padding: 54px 0 44px; gap: 0; }
   .hero h1 { font-size: clamp(48px,14vw,62px); line-height: .91; }
   .hero-copy > p { margin-bottom: 14px; font-size: 10px; }
