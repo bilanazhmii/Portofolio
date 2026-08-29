@@ -375,14 +375,14 @@ export default function Home() {
             <span className="card-note">MOVE · CLICK · READ ↗</span>
           </div>
           <div className="hero-copy">
-            <p className="hero-enter hero-enter-2">Hello, I&apos;m <strong>Irga.</strong> <span className="hero-handle">/ @BilaNiumN1</span></p>
-            <h1 aria-label="Independent developer building useful digital products">
-              <span className="title-line hero-enter hero-enter-3"><span>Independent developer</span></span>
-              <span className="title-line hero-enter hero-enter-4"><span>building useful products.</span></span>
+            <p className="hero-enter hero-enter-2">Independent product developer <span className="hero-handle">/ Lembang, ID</span></p>
+            <h1 aria-label="Useful digital products, thoughtfully built">
+              <span className="title-line hero-enter hero-enter-3"><span>Useful products,</span></span>
+              <span className="title-line title-line-accent hero-enter hero-enter-4"><span>thoughtfully built.</span></span>
             </h1>
             <div className="hero-detail hero-enter hero-enter-5">
-              <p>I design and build practical web products—turning everyday problems into clear interfaces, reliable systems, and maintainable code.</p>
-              <a className="primary-button" href="#work" data-cursor="Explore" onPointerMove={(event) => setTilt(event, 3)} onPointerLeave={resetTilt}><span>View repositories</span><ArrowDownRight /></a>
+              <p>Hello, I&apos;m <strong>Irga Andreansyah Setiawan.</strong> I turn everyday problems into clear interfaces, reliable systems, and maintainable code.</p>
+              <a className="primary-button" href="#work" data-cursor="Explore" onPointerMove={(event) => setTilt(event, 3)} onPointerLeave={resetTilt}><span>Explore selected work</span><ArrowDownRight /></a>
             </div>
           </div>
         </div>
@@ -405,8 +405,8 @@ export default function Home() {
 
       <section className="work shell" id="work">
         <div className="section-heading" data-reveal>
-          <div><span className="section-index">01 / GITHUB</span><h2>Selected<br />repositories</h2></div>
-          <p>Public projects documented on the BilaNiumN1 GitHub profile and repository READMEs.</p>
+          <div><span className="section-index">01 / SELECTED WORK</span><h2>Built for<br />real use.</h2></div>
+          <p>A focused selection of public projects—each shaped around an actual workflow, a clear purpose, and a maintainable technical foundation.</p>
         </div>
         <div className="work-toolbar" data-reveal>
           <fieldset className="filters" aria-label="Filter projects">
@@ -433,7 +433,7 @@ export default function Home() {
 
       <section className="about shell" id="about">
         <div className="section-heading about-heading" data-reveal>
-          <div><span className="section-index">02 / HOW I BUILD</span><h2>Product clarity,<br />system thinking.</h2></div>
+          <div><span className="section-index">02 / HOW I BUILD</span><h2>Clarity first.<br />Systems that last.</h2></div>
           <p>I care about the details between an idea and a product people can actually use: thoughtful UX, sensible architecture, resilient data flows, and continuous refinement.</p>
         </div>
         <div className="capabilities">
@@ -454,7 +454,7 @@ export default function Home() {
           <h2>Designed with intention.<br />Built through <em>iteration.</em></h2>
           <div className="contact-actions">
             <a href="https://github.com/bilanazhmii" target="_blank" rel="noreferrer" data-cursor="GitHub"><Code2 /> @bilanazhmii</a>
-            <a href="https://www.instagram.com/tell.hack/" target="_blank" rel="noreferrer" data-cursor="Instagram"><AtSign /> @tell.hack</a>
+            <a href="https://www.instagram.com/somniumn1/" target="_blank" rel="noreferrer" data-cursor="Instagram"><AtSign /> @SomNiumN1</a>
             <a href="https://orcid.org/0009-0004-5857-3394" target="_blank" rel="noreferrer" data-cursor="ORCID"><ExternalLink /> ORCID</a>
           </div>
           <button className="aeternum-trigger" type="button" aria-label="Inspect the meaning of Aeternum" onClick={() => discoverClue('aeternum')}><span>AETERNUM</span><i>what is meant to remain</i><strong>A</strong></button>
