@@ -423,7 +423,7 @@ export default function Home() {
                 <span className="project-number">{project.number}</span><span className="project-mark">{project.mark}</span><span className="project-category">{project.category}</span><ArrowUpRight className="project-arrow" />
                 <span className="project-scanline" aria-hidden="true" /><span className="project-glare" aria-hidden="true" />
               </div>
-              <div className="project-info"><div><h3>{project.title}</h3><p>{project.caption}</p></div><div><span>{project.category}</span><span>{project.updated}</span><span className="project-open">Repository details ↗</span></div></div>
+              <div className="project-info"><div><span className="project-kicker">Project {project.number} / Public build</span><h3>{project.title}</h3><p>{project.caption}</p></div><div><span>{project.category}</span><span>{project.updated}</span><span className="project-open">Open project ↗</span></div></div>
               <button className="project-hit" type="button" aria-haspopup="dialog" aria-label={`Open ${project.title} project preview`} onClick={(event) => openProject(project, event)} />
               {project.number === '03' && <button className="clue-trigger clue-project" type="button" aria-label="Inspect the before-success marker" onClick={() => discoverClue('before')}><span aria-hidden="true">B</span><small>before success</small></button>}
             </article>
