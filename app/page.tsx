@@ -11,6 +11,8 @@ import {
   useState,
 } from 'react';
 
+import Image from 'next/image';
+
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -376,7 +378,7 @@ export default function Home() {
       </output>
 
       <header className="site-header">
-        <a className="brand" href="#home" aria-label="BilaNiumN1 home" data-cursor="Home"><span>B</span><strong>BILANIUMN1</strong></a>
+        <a className="brand" href="#home" aria-label="BilaNiumN1 home" data-cursor="Home"><span className="brand-avatar"><Image src="/irga-profile.jpg" alt="" width={38} height={38} priority /></span><strong>BILANIUMN1</strong></a>
         <nav className={menuOpen ? 'main-nav is-open' : 'main-nav'} aria-label="Primary navigation">
           {navItems.map(([id, label]) => (
             <a key={id} href={`#${id}`} className={activeSection === id ? 'is-active' : ''} aria-current={activeSection === id ? 'location' : undefined} onClick={() => setMenuOpen(false)}><span>{label}</span></a>
@@ -388,20 +390,27 @@ export default function Home() {
 
       <section className="hero shell" id="home">
         <div className="hero-aura" aria-hidden="true" />
-        <div className="eyebrow hero-enter hero-enter-1"><span>Independent developer</span><span>Lembang / Indonesia</span></div>
+        <div className="eyebrow hero-enter hero-enter-1">
+          <span>Student developer / systems builder</span>
+          <button className="location-clue" type="button" onClick={() => discoverClue('lembang')} aria-label="Inspect the Lembang location marker"><span>Lembang / Indonesia</span><i aria-hidden="true">L</i></button>
+        </div>
         <div className="hero-grid">
           <div className="card-stage hero-enter hero-enter-2">
             <div className="identity-card" data-cursor="Open note" onPointerMove={(event) => setTilt(event, 9)} onPointerLeave={resetTilt}>
               <div className="lanyard" />
-              <div className="identity-top"><span>IRGA / 17</span><span>STUDENT ID</span></div>
-              <div className="identity-mark">
-                {/* oxlint-disable-next-line next/no-img-element -- public GitHub avatar is the verified profile source */}
-                <img className="identity-photo" src="https://avatars.githubusercontent.com/u/282802931?v=4" alt="BilaNiumN1 GitHub avatar" />
+              <div className="identity-top"><span><i /> IRGA / 17</span><span>SOMNIUM ID · 2026</span></div>
+              <div className="identity-portrait">
+                <Image className="identity-photo" src="/irga-profile.jpg" alt="A red rose held in warm evening light" width={460} height={460} sizes="(max-width: 520px) 76vw, 318px" priority />
+                <span className="identity-portrait-index">01 / STUDENT BUILDER</span>
               </div>
-              <div className="identity-bottom"><strong>Irga Andreansyah<br />Setiawan</strong><span>Systems · products<br />community tech</span></div>
+              <div className="identity-bottom">
+                <div><small>Systems · products · community</small><strong>Irga Andreansyah<br />Setiawan</strong></div>
+                <span className="identity-seal">IA<i>06</i></span>
+              </div>
               <button ref={identityTriggerRef} className="identity-hit" type="button" aria-haspopup="dialog" aria-label="Open personal quote and translations" onClick={openIdentity}>
-                <span>Personal note</span><strong>Aṣ-ṣabru qabla an-najāḥ ↗</strong>
+                <span>Personal note / tap to translate</span><strong>الصبر قبل النجاح <i>↗</i></strong>
               </button>
+              <span className="identity-serial" aria-hidden="true">N1 / LEMBANG / 2026</span>
               <div className="card-glare" aria-hidden="true" />
             </div>
             <span className="card-note">MOVE · CLICK · READ ↗</span>
@@ -423,7 +432,7 @@ export default function Home() {
 
       <div className="profile-facts shell" aria-label="Personal profile facts">
         <div><strong>17</strong><span>Informatics student</span></div>
-        <button className="fact-clue" type="button" onClick={() => discoverClue('lembang')} aria-label="Inspect Lembang profile fact"><strong>OSIS 06</strong><span>Communication &amp; information</span><i aria-hidden="true">L</i></button>
+        <div><strong>OSIS 06</strong><span>Communication &amp; information</span></div>
         <div><strong>Kali / W11</strong><span>Dual-boot systems builder</span></div>
       </div>
 
@@ -512,7 +521,7 @@ export default function Home() {
         </div>
         <div className="offscreen-note" data-reveal>
           <div><Gamepad2 aria-hidden="true" /><span>OFF SCREEN / 01</span><p>CS2, Minecraft, and the curiosity to understand what keeps a world running.</p></div>
-          <div><Bike aria-hidden="true" /><span>OFF SCREEN / 02</span><p>Riding an R15 V3 today—with ZX and H2R living on the long-term dream list.</p></div>
+          <div><Bike aria-hidden="true" /><span>OFF SCREEN / 02</span><p>Riding an R25 V3 today—with ZX and H2R living on the long-term dream list.</p></div>
         </div>
         <p className="responsible-note" data-reveal>Security curiosity is now directed toward defensive testing, system hardening, and responsible experiments inside controlled environments.</p>
       </section>
