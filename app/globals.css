@@ -515,8 +515,8 @@ body:has(.secret-dialog) [data-slot='dialog-overlay'] { z-index: 130; background
   .availability { display: none; }
   .menu-button { display: block; }
   .hero-grid { grid-template-columns: 1fr; padding: 64px 0 48px; }
-  .hero-copy { order: 1; }
-  .card-stage { order: 2; margin-top: 34px; }
+  .card-stage { order: 1; margin-top: 34px; }
+  .hero-copy { order: 2; margin-top: 52px; }
   .identity-card { width: min(72vw,300px); }
   .hero-detail, .section-heading, .work .section-heading { grid-template-columns: 1fr; }
   .hero-detail { align-items: start; }
@@ -676,7 +676,7 @@ body:has(.secret-dialog) [data-slot='dialog-overlay'] { z-index: 130; background
 @media (pointer: coarse) {
   .cursor-orbit, main::before { display: none; }
   .identity-card, .project-card, .primary-button { transform: none !important; }
-  .card-stage { animation: none; }
+  .card-stage { opacity: 1; animation: none; transform: none !important; }
 }
 
 @media (prefers-reduced-motion: reduce) {
