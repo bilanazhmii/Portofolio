@@ -536,7 +536,7 @@ export default function Home() {
             <p>If you are building something useful, have an interesting technical problem, or want to exchange ideas, feel free to reach out.</p>
             <div className="contact-actions">
               <a href="mailto:bilaniumn1@gmail.com" data-cursor="Email"><Mail /><span><small>Email</small>bilaniumn1@gmail.com</span></a>
-              <a href="https://github.com/bilanazhmii" target="_blank" rel="noreferrer" data-cursor="GitHub"><Code2 /><span><small>GitHub</small>@bilanazhmii</span></a>
+              <a href="https://github.com/bilanazhmii" target="_blank" rel="noreferrer" data-cursor="GitHub"><Code2 /><span><small>GitHub</small>@klick-here</span></a>
               <a href="https://www.instagram.com/tell.hack/" target="_blank" rel="noreferrer" data-cursor="Instagram"><AtSign /><span><small>Instagram</small>@Tell.hack</span></a>
               <a href="https://orcid.org/0009-0004-5857-3394" target="_blank" rel="noreferrer" data-cursor="ORCID"><ExternalLink /><span><small>Research identity</small>ORCID</span></a>
             </div>
@@ -616,7 +616,7 @@ export default function Home() {
             <div>
               <p>For the person hidden between the details.</p>
               <h2>Nabila Nazhmi<br />Dhi&apos;ulHaq</h2>
-              <a href="https://www.instagram.com/bilanazhmii/" target="_blank" rel="noreferrer"><AtSign /> @klick-here</a>
+              <a href="https://www.instagram.com/bilanazhmii/" target="_blank" rel="noreferrer"><AtSign /> @bilanazhmii</a>
             </div>
           </div>
           <p className="secret-thesis">Some people are not merely part of the story. They are the quiet reason it keeps being written.</p>
