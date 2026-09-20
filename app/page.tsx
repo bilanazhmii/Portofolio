@@ -616,7 +616,7 @@ export default function Home() {
             <div>
               <p>For the person hidden between the details.</p>
               <h2>Nabila Nazhmi<br />Dhi&apos;ulHaq</h2>
-              <a href="https://www.instagram.com/bilanazhmii/" target="_blank" rel="noreferrer"><AtSign /> @bilanazhmii</a>
+              <a href="https://www.instagram.com/bilanazhmii/" target="_blank" rel="noreferrer"><AtSign /> @klick-here</a>
             </div>
           </div>
           <p className="secret-thesis">Some people are not merely part of the story. They are the quiet reason it keeps being written.</p>
