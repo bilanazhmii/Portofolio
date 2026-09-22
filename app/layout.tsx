@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 
@@ -40,6 +40,13 @@ export const metadata: Metadata = {
     description: 'Student developer and systems builder creating useful products, infrastructure, and community technology.',
     images: ['/irga-profile.jpg'],
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: '#251a15',
+  viewportFit: 'cover',
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({
