@@ -497,7 +497,7 @@ export default function Home() {
             <span className="journey-number">01</span>
             <div className="journey-title"><Users aria-hidden="true" /><small>Now / Community</small><h3>SMK Informatika × OSIS Kominfo</h3></div>
             <p>A 17-year-old vocational informatics student serving in OSIS Communication &amp; Information, Sekbid 6—turning school activity into useful digital communication.</p>
-            <a href="https://osissmktest.biezz.my.id" target="_blank" rel="noreferrer">Visit the OSIS website <ArrowUpRight /></a>
+            <a href="https://osissmkfi.biezz.my.id" target="_blank" rel="noreferrer">Visit the OSIS website <ArrowUpRight /></a>
           </article>
           <article className="journey-row" data-reveal style={{ '--reveal-delay': '70ms' } as CSSProperties}>
             <span className="journey-number">02</span>
