@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://irga-somnium-portfolio.bilaniumn1.chatgpt.site'),
+  metadataBase: new URL('https://the-portofolio.vercel.app'),
   title: 'Irga Andreansyah Setiawan — BilaNiumN1',
   description: 'Irga Andreansyah Setiawan is a student developer and systems builder in Lembang, Indonesia, creating useful web products, infrastructure, and community technology.',
   icons: {
@@ -27,15 +27,16 @@ export const metadata: Metadata = {
     url: '/',
     siteName: 'BilaNiumN1',
     type: 'website',
+    locale: 'en_US',
     images: [{
       url: '/irga-profile.jpg',
       width: 460,
       height: 460,
-      alt: 'BilaNiumN1 identity image — a red rose held in warm evening light',
+      alt: 'Portrait of Irga Andreansyah Setiawan',
     }],
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: 'Irga Andreansyah Setiawan — BilaNiumN1',
     description: 'Student developer and systems builder creating useful products, infrastructure, and community technology.',
     images: ['/irga-profile.jpg'],
@@ -55,7 +56,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id">
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

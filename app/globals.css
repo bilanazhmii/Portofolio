@@ -437,6 +437,19 @@ body:has(.secret-dialog) [data-slot='dialog-overlay'] { z-index: 130; background
 .clue-iteration { width: 32px; aspect-ratio: 1; color: oklch(45% 0.010 60); }
 .capability:hover .clue-iteration { border-color: var(--foreground); color: var(--accent); }
 
+.skills-block { position: relative; z-index: 1; margin-top: 36px; padding-top: 34px; border-top: 1px solid rgb(0 0 0 / 0.2); }
+.skills-head { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.1fr); gap: 18px 42px; align-items: end; margin-bottom: 28px; }
+.skills-head .section-index { grid-column: 1 / -1; margin-bottom: 0; color: oklch(48% 0.150 36); }
+.skills-head h3 { margin: 0; font-size: clamp(28px,3vw,40px); letter-spacing: -.045em; }
+.skills-head p { margin: 0; max-width: 480px; justify-self: end; color: oklch(40% 0.010 60); font-size: 14px; line-height: 1.6; }
+.skills-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); border-top: 1px solid rgb(0 0 0 / 0.18); border-left: 1px solid rgb(0 0 0 / 0.18); }
+.skill-group { min-width: 0; padding: 22px 20px 24px; border-right: 1px solid rgb(0 0 0 / 0.18); border-bottom: 1px solid rgb(0 0 0 / 0.18); background: rgb(255 255 255 / 0.28); transition: background .3s ease, transform .35s var(--ease-out); }
+.skill-group:hover { background: rgb(255 255 255 / 0.55); transform: translateY(-3px); }
+.skill-group > span { display: block; margin-bottom: 14px; color: oklch(48% 0.150 36); font: 650 9px var(--font-geist-mono); letter-spacing: .14em; }
+.skill-group h4 { margin: 0 0 14px; font-size: 18px; letter-spacing: -.03em; }
+.skill-group ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 7px; }
+.skill-group li { padding: 7px 10px; border: 1px solid rgb(0 0 0 / 0.16); border-radius: 999px; color: oklch(38% 0.010 60); font: 600 9px var(--font-geist-mono); letter-spacing: .04em; text-transform: uppercase; }
+
 .journey { position: relative; overflow: hidden; padding-inline: clamp(22px,4vw,56px); border: 1px solid var(--line); border-radius: 64px 12px 12px 12px; background: linear-gradient(145deg,rgb(243 241 235 / 0.055),rgb(243 241 235 / 0.018) 44%,rgb(209 247 119 / 0.025)); }
 .journey::before { content: 'PROFILE / 17'; position: absolute; right: 20px; top: 104px; color: var(--muted); font: 600 8px var(--font-geist-mono); letter-spacing: .16em; writing-mode: vertical-rl; opacity: .55; }
 .journey-heading { grid-template-columns: minmax(260px,1fr) minmax(240px,.72fr); margin-bottom: 34px; padding: 0 7% 40px 0; border-bottom: 1px solid var(--line); }
@@ -541,6 +554,9 @@ body:has(.secret-dialog) [data-slot='dialog-overlay'] { z-index: 130; background
   .capability { grid-template-columns: 50px 1fr 32px; }
   .capability p { grid-column: 2; }
   .capability svg { grid-column: 3; grid-row: 1 / span 2; }
+  .skills-head { grid-template-columns: 1fr; }
+  .skills-head p { justify-self: start; }
+  .skills-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
   .journey-heading { grid-template-columns: 1fr; padding-right: 0; }
   .journey-heading > p { justify-self: start; }
   .journey-row { grid-template-columns: 48px 1fr; gap: 18px 24px; padding: 28px 0; }
@@ -610,6 +626,8 @@ body:has(.secret-dialog) [data-slot='dialog-overlay'] { z-index: 130; background
   .capability::before { inset-inline: -18px; }
   .capability { grid-template-columns: 46px 1fr 32px; gap: 14px; padding: 23px 0; }
   .capability h3 { font-size: 23px; }
+  .skills-block { margin-top: 28px; padding-top: 26px; }
+  .skills-grid { grid-template-columns: 1fr; }
   .journey { padding-block: 64px 36px; }
   .journey::before { display: none; }
   .journey-heading { gap: 26px; padding-bottom: 28px; }

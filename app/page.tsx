@@ -81,9 +81,17 @@ const quoteSlides = [
 
 const projects = [
   { number: '01', title: 'SchoolDMS', type: 'Document management', category: 'TypeScript', updated: 'Aug 22, 2026', className: 'project-svara', mark: 'DMS', caption: 'A connected document-management platform for school workflows.', overview: 'A connected document-management platform for school workflows, combining a Next.js interface, NestJS API, Prisma data layer, cloud storage, and sync tooling.', services: ['TypeScript', 'Next.js', 'NestJS', 'Prisma', 'Supabase'], repoUrl: 'https://github.com/bilanazhmii/SchoolDMS', liveUrl: 'https://school-dms.vercel.app/' },
-  { number: '02', title: 'Our-bisnis', type: 'Business operations PWA', category: 'JavaScript', updated: 'Aug 23, 2026', className: 'project-north', mark: 'OB', caption: 'A PWA for day-to-day business operations.', overview: 'A PWA for day-to-day business operations: sales, inventory, cash flow, receivables, reports, receipts, roles, and secure cross-device sync.', services: ['JavaScript', 'Supabase', 'PWA', 'RLS', 'Offline-first'], repoUrl: 'https://github.com/bilanazhmii/Our-bisnis', liveUrl: 'https://our-bisnis.vercel.app/' },
-  { number: '03', title: 'MyPortofolio', type: 'Immersive 3D portfolio', category: 'TypeScript', updated: 'Aug 23, 2026', className: 'project-ruang', mark: '3D', caption: 'An immersive 3D portfolio with motion and spatial interaction.', overview: 'An immersive 3D portfolio with motion, spatial interaction, and a cinematic WebGL experience.', services: ['TypeScript', '3D', 'WebGL'], repoUrl: 'https://github.com/bilanazhmii/MyPortofolio', liveUrl: 'https://myportofolio-bila-la.vercel.app' },
-  { number: '04', title: 'BotIndo', type: 'Operations bot', category: 'JavaScript', updated: 'Jul 27, 2026', className: 'project-common', mark: 'BOT', caption: 'A Discord and Minecraft operations bot.', overview: 'A Discord and Minecraft operations bot with RCON, server status, commands, AI utilities, and a web dashboard.', services: ['JavaScript', 'Discord', 'Minecraft', 'RCON'], repoUrl: 'https://github.com/bilanazhmii/BotIndo', liveUrl: null },
+  { number: '02', title: 'Our-bisnis', type: 'Business operations PWA', category: 'JavaScript', updated: 'Sep 08, 2026', className: 'project-north', mark: 'OB', caption: 'A PWA for day-to-day business operations.', overview: 'A PWA for day-to-day business operations: sales, inventory, cash flow, receivables, reports, receipts, roles, and secure cross-device sync.', services: ['JavaScript', 'Supabase', 'PWA', 'RLS', 'Offline-first'], repoUrl: 'https://github.com/bilanazhmii/Our-bisnis', liveUrl: 'https://our-bisnis.vercel.app/' },
+  { number: '03', title: 'BotIndo', type: 'Operations bot', category: 'JavaScript', updated: 'Jul 27, 2026', className: 'project-common', mark: 'BOT', caption: 'A Discord and Minecraft operations bot.', overview: 'A Discord and Minecraft operations bot with RCON, server status, commands, AI utilities, and a web dashboard.', services: ['JavaScript', 'Discord', 'Minecraft', 'RCON'], repoUrl: 'https://github.com/bilanazhmii/BotIndo', liveUrl: null },
+] as const;
+
+const skillGroups = [
+  { number: '01', title: 'Languages', items: ['TypeScript', 'JavaScript', 'Python', 'SQL'] },
+  { number: '02', title: 'Product', items: ['Next.js', 'React', 'PWA', 'Responsive UI', 'NestJS'] },
+  { number: '03', title: 'Data', items: ['Prisma', 'Supabase', 'PostgreSQL', 'RLS'] },
+  { number: '04', title: 'Systems', items: ['Linux', 'Kali', 'Windows 11', 'KDE', 'Wayland'] },
+  { number: '05', title: 'Infrastructure', items: ['Self-hosting', 'Vercel', 'Game servers', 'RCON', 'Networking'] },
+  { number: '06', title: 'Practice', items: ['Git', 'Discord bots', 'System hardening', 'Defensive testing'] },
 ] as const;
 type Project = (typeof projects)[number];
 
@@ -383,7 +391,7 @@ export default function Home() {
             <a key={id} href={`#${id}`} className={activeSection === id ? 'is-active' : ''} aria-current={activeSection === id ? 'location' : undefined} onClick={() => setMenuOpen(false)}><span>{label}</span></a>
           ))}
         </nav>
-        <a className="availability" href="https://github.com/bilanazhmii?tab=repositories" target="_blank" rel="noreferrer" data-cursor="GitHub"><i /> 6 public repositories</a>
+        <a className="availability" href="#contact" data-cursor="Hire"><i /> Open to collaborate</a>
         <button className="menu-button" type="button" aria-label="Toggle navigation" aria-expanded={menuOpen} onClick={() => setMenuOpen((open) => !open)}>{menuOpen ? <X /> : <Menu />}</button>
       </header>
 
@@ -399,7 +407,7 @@ export default function Home() {
               <div className="lanyard" />
               <div className="identity-top"><span><i /> IRGA / 17</span><span>SOMNIUM ID · 2026</span></div>
               <div className="identity-portrait">
-                <Image className="identity-photo" src="/irga-profile.jpg" alt="A red rose held in warm evening light" width={460} height={460} sizes="(max-width: 520px) 76vw, 318px" priority />
+                <Image className="identity-photo" src="/irga-profile.jpg" alt="Portrait of Irga Andreansyah Setiawan" width={460} height={460} sizes="(max-width: 520px) 76vw, 318px" priority />
                 <span className="identity-portrait-index">01 / STUDENT BUILDER</span>
               </div>
               <div className="identity-bottom">
@@ -431,8 +439,8 @@ export default function Home() {
 
       <div className="profile-facts shell" aria-label="Personal profile facts">
         <div><strong>17</strong><span>Informatics student</span></div>
-        <div><strong>OSIS 06</strong><span>Communication &amp; information</span></div>
-        <div><strong>Kali / W11</strong><span>Dual-boot systems builder</span></div>
+        <div><strong>8</strong><span>Public repositories</span></div>
+        <div><strong>ID / EN</strong><span>Languages in use</span></div>
       </div>
 
       <div className="motion-rail shell" aria-label="Creative services">
@@ -474,7 +482,7 @@ export default function Home() {
       <section className="about shell" id="about">
         <div className="section-heading about-heading" data-reveal>
           <div><span className="section-index">02 / HOW I BUILD</span><h2><span>Clarity first.</span><span>Systems that last.</span></h2></div>
-          <p>I care about the details between an idea and a product people can actually use: thoughtful UX, sensible architecture, resilient data flows, and continuous refinement.</p>
+          <p>I care about the details between an idea and a product people can actually use: thoughtful UX, sensible architecture, resilient data flows, and continuous refinement. Based in Lembang, I build for school, community, and real operational workflows, then keep refining what ships.</p>
         </div>
         <div className="capabilities">
           {[
@@ -484,6 +492,22 @@ export default function Home() {
           ].map(([number, title, detail], index) => (
             <div className="capability" key={number} data-reveal style={{ '--reveal-delay': `${index * 70}ms` } as CSSProperties}><span>{number}</span><h3>{title}</h3><p>{detail}</p>{index === 2 ? <button className="clue-trigger clue-iteration" type="button" aria-label="Inspect the iteration marker" onClick={() => discoverClue('iteration')}><span aria-hidden="true">I</span></button> : <MoveUpRight aria-hidden="true" />}</div>
           ))}
+        </div>
+        <div className="skills-block" data-reveal>
+          <div className="skills-head">
+            <span className="section-index">STACK / TOOLKIT</span>
+            <h3>What I build with</h3>
+            <p>Tools chosen for clear workflows, reliable data, and systems that stay maintainable after ship day.</p>
+          </div>
+          <div className="skills-grid">
+            {skillGroups.map((group, index) => (
+              <div className="skill-group" key={group.number} data-reveal style={{ '--reveal-delay': `${index * 55}ms` } as CSSProperties}>
+                <span>{group.number}</span>
+                <h4>{group.title}</h4>
+                <ul>{group.items.map((item) => <li key={item}>{item}</li>)}</ul>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -495,19 +519,19 @@ export default function Home() {
         <div className="journey-list">
           <article className="journey-row" data-reveal>
             <span className="journey-number">01</span>
-            <div className="journey-title"><Users aria-hidden="true" /><small>Now / Community</small><h3>SMK Informatika × OSIS Kominfo</h3></div>
+            <div className="journey-title"><Users aria-hidden="true" /><small>2025–2026 / Community</small><h3>SMK Informatika × OSIS Kominfo</h3></div>
             <p>A 17-year-old vocational informatics student serving in OSIS Communication &amp; Information, Sekbid 6—turning school activity into useful digital communication.</p>
             <a href="https://osissmkfi.biezz.my.id" target="_blank" rel="noreferrer">Visit the OSIS website <ArrowUpRight /></a>
           </article>
           <article className="journey-row" data-reveal style={{ '--reveal-delay': '70ms' } as CSSProperties}>
             <span className="journey-number">02</span>
-            <div className="journey-title"><Cpu aria-hidden="true" /><small>Systems / Linux</small><h3>Debugging below the interface</h3></div>
+            <div className="journey-title"><Cpu aria-hidden="true" /><small>2025–2026 / Linux</small><h3>Debugging below the interface</h3></div>
             <p>Runs Windows 11 and Kali Linux 2026.3 in dual boot on a Lenovo LOQ, works with KDE Plasma and Wayland, and resolved a nouveau/NVIDIA conflict on an RTX 4050 system.</p>
             <div className="journey-tags" aria-label="System environment"><span>Kali Linux</span><span>KDE</span><span>Wayland</span><span>NVIDIA</span></div>
           </article>
           <article className="journey-row" data-reveal style={{ '--reveal-delay': '140ms' } as CSSProperties}>
             <span className="journey-number">03</span>
-            <div className="journey-title"><Server aria-hidden="true" /><small>Infrastructure / Practice</small><h3>Servers learned by running them</h3></div>
+            <div className="journey-title"><Server aria-hidden="true" /><small>2025–2026 / Infrastructure</small><h3>Servers learned by running them</h3></div>
             <p>Built game-server panels, hosted Minecraft servers, and exposed services through a public IP—learning networking, Linux administration, deployment, and reliability by doing.</p>
             <div className="journey-tags" aria-label="Infrastructure interests"><span>Self-hosting</span><span>Networking</span><span>Game servers</span></div>
           </article>
@@ -536,7 +560,7 @@ export default function Home() {
             <p>If you are building something useful, have an interesting technical problem, or want to exchange ideas, feel free to reach out.</p>
             <div className="contact-actions">
               <a href="mailto:bilaniumn1@gmail.com" data-cursor="Email"><Mail /><span><small>Email</small>bilaniumn1@gmail.com</span></a>
-              <a href="https://github.com/bilanazhmii" target="_blank" rel="noreferrer" data-cursor="GitHub"><Code2 /><span><small>GitHub</small>@klick-here</span></a>
+              <a href="https://github.com/bilanazhmii" target="_blank" rel="noreferrer" data-cursor="GitHub"><Code2 /><span><small>GitHub</small>@bilanazhmii</span></a>
               <a href="https://www.instagram.com/tell.hack/" target="_blank" rel="noreferrer" data-cursor="Instagram"><AtSign /><span><small>Instagram</small>@Tell.hack</span></a>
               <a href="https://orcid.org/0009-0004-5857-3394" target="_blank" rel="noreferrer" data-cursor="ORCID"><ExternalLink /><span><small>Research identity</small>ORCID</span></a>
             </div>
@@ -568,7 +592,7 @@ export default function Home() {
                 <a href={selectedProject.repoUrl} target="_blank" rel="noreferrer"><Code2 /> Source code</a>
                 {selectedProject.liveUrl && <a href={selectedProject.liveUrl} target="_blank" rel="noreferrer"><ExternalLink /> Live product</a>}
               </div>
-              <p className="modal-note">Source: public GitHub profile, repository metadata, and README.</p>
+              <p className="modal-note">Open source on GitHub. Issues and pull requests are welcome.</p>
             </div>
           </dialog>
         </div>
